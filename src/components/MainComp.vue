@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="calc">
       <div class="card p-4">
         <div class="card" style="width: 18rem">
           <img :src="card.poster" class="card-img-top" alt="..." />
@@ -29,8 +29,13 @@ export default {
 <style lang="scss" scoped>
 .card {
     background-color: #424242;
+    height: 450px;
+    border: none;
 
   img {
+    height: 250px;
+    width: 250px;
+    align-self: center;
   }
 
   h5 {
@@ -41,4 +46,6 @@ export default {
     color: lightslategray;
   }
 }
+
+
 </style>

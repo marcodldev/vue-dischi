@@ -6,8 +6,8 @@
     </header>
 
     <main >
-      <div class="container">
-        <div class="d-flex justify-content-center flex-wrap p-5">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-center flex-wrap p-5 customg">
           <MainComp  v-for="(elem, index) in dataDischi"
           :key="index"
           :card="elem"/>
@@ -67,6 +67,7 @@ background-color: #424242;
 
 img {
     width: 60px;
+    padding: 5px;
 }
 }
 
@@ -75,5 +76,8 @@ main {
   height: 80%;
 }
 
+.customg {
+  gap: 20px;
+}
 
 </style>
