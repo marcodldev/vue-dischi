@@ -5,9 +5,20 @@
         <img src="./assets/spotify-logo-png-7053.png" alt="spotifylogo">
     </header>
 
-    <MainComp  v-for="(elem, index) in dataDischi"
+    <main >
+      <div class="container">
+        <div class="d-flex justify-content-center flex-wrap p-5">
+          <MainComp  v-for="(elem, index) in dataDischi"
           :key="index"
           :card="elem"/>
+        </div>
+
+      </div>
+
+
+  
+    </main>
+
 
   </div>
 </template>
@@ -52,10 +63,17 @@ header {
 
 width: 100%;
 text-align:start;
-background-color: greenyellow;
+background-color: #424242;
 
 img {
     width: 60px;
 }
 }
+
+main {
+  background-color: #1E2D3B;
+  height: 80%;
+}
+
+
 </style>
