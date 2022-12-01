@@ -3,6 +3,11 @@
     
     <header >
         <img src="./assets/spotify-logo-png-7053.png" alt="spotifylogo">
+        <SearchComp @emit1="emitM"/>
+        <select name="" id="" v-model="valueOptionSelected">
+          <option :value="elem" v-for="(elem,index) in arrayGeneri" :key="index">{{elem}}</option>
+        </select>
+        
     </header>
 
     <main >
@@ -10,7 +15,7 @@
         <div class="d-flex justify-content-center flex-wrap p-5 customg">
           <MainComp  v-for="(elem, index) in dataDischi"
           :key="index"
-          :card="elem"/>
+          />
         </div>
 
       </div>
@@ -26,16 +31,34 @@
 <script>
 import MainComp from './components/MainComp.vue'
 import axios from 'axios'
+import SearchComp from './components/SearchComp.vue';
 
 export default {
   name: 'App',
   components: {
-    MainComp
-  },
+    MainComp,
+    SearchComp
+},
   data() {
       return {
-        dataDischi: ''
+        dataDischi: '',
+        emitVar : '',
+        arrayGeneri: [],
+        albums: [],
       }
+    },
+    computed: {
+
+      funComputed () {
+      if (this.sceltaUtente == '') {
+        return this.albums
+        
+      } else {
+        return this.albums.filter((elem) => {
+          return elem.genre == this.sceltaUtente
+        })
+        
+      }}
     },
     mounted() {
       this.getDischi();
@@ -45,7 +68,19 @@ export default {
         axios.get('https://flynn.boolean.careers/exercises/api/array/music')
           .then((response) => {
             this.dataDischi = response.data.response
-          })}
+
+            this.dataDischi.forEach((singoloAlbum) => {
+              if (!this.arrayGeneri.includes(singoloAlbum.genre)) {
+                this.arrayGeneri.push(singoloAlbum.genre)
+              }
+            })
+
+            this.$emit('emit1',this.arrayGeneri)
+
+          })},
+          emitM (valoreEmit) {
+            this.emitVar = valoreEmit
+          }
     }
 }
 </script>
